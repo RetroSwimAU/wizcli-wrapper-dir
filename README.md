@@ -1,4 +1,4 @@
-# Wizcli Wrapper v1
+# Wizcli Wrapper v1 - mod
 
 This is a repository for the **Wizcli Wrapper v1** GitHub action. 
 
@@ -15,6 +15,8 @@ You can use this action for the following:
   - The wiz-cli scans local Docker images, analyzing binaries and packages in the container image, performing full vulnerability and secrets scans, and then outputting the results to the terminal
 - scanning for secrets in your repository and Docker images
   - the wizcli will search for secrets during the IaC and the Docker scan by default
+- scan code in directories ***(new)***
+  - wizcli scans code in directories for vulnerable dependencies (I assume)
 
 Not supported:
 
@@ -32,7 +34,7 @@ Not supported:
 # Usage
 
 ```yaml
-  uses: aleksei-aikashev/wizcli-wrapper@v1
+  uses: RetroSwimAU/wizcli-wrapper@v1
   with: 
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
@@ -110,7 +112,7 @@ jobs:
 ```
 
 # Scenarios
-## Scan only IaC with custom policy
+## ~~Scan only IaC with custom policy~~
 
 ```yaml
 - name: Wiz IaC Scan
@@ -131,11 +133,26 @@ jobs:
   with: 
     docker_scan_path: "./YOUR_RELATIVE_PATH_TO_DOCKERFILE_FOLDER"
     wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
+    skip_dir_scan: "skip"
+
+    wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
+    wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
+```
+
+## Scan code in specified path
+
+```yaml
+- name: Wiz Docker Image Vulnerability Scan
+  uses: aleksei-aikashev/wizcli-wrapper@v1
+  with: 
+    dir_scan_path: "./YOUR_RELATIVE_PATH_TO_CODE_TOP_LEVEL"
+    wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
     skip_iac_scan: "skip"
 
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
+
 
 ## Scanning for secrets and breaking the build
 
