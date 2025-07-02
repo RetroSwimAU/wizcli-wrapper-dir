@@ -112,15 +112,16 @@ jobs:
 ```
 
 # Scenarios
-## ~~Scan only IaC with custom policy~~
+## Scan only IaC with custom policy
 
 ```yaml
 - name: Wiz IaC Scan
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
     wiz_iac_policy: "YOUR_CUSTOM_IAC_POLICY"
+    skip_iac_scan: "noskip"
     skip_docker_scan: "skip"
-
+    skip_dir_scan: "skip"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
@@ -133,7 +134,9 @@ jobs:
   with: 
     docker_scan_path: "./YOUR_RELATIVE_PATH_TO_DOCKERFILE_FOLDER"
     wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
-    skip_dir_scan: "skip"
+
+    # IaC scans are now skipped by default
+    skip_dir_scan: "skip" 
 
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
@@ -147,6 +150,8 @@ jobs:
   with: 
     dir_scan_path: "./YOUR_RELATIVE_PATH_TO_CODE_TOP_LEVEL"
     wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
+
+    # IaC scans are now skipped by default
     skip_iac_scan: "skip"
 
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
@@ -160,6 +165,7 @@ jobs:
 - name: Wiz Full Scan With Secrets Check
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
+    skip_iac_scan: "noskip"
     wiz_iac_policy: "Default IaC policy,YOUR_CUSTOM_SECRETS_POLICY"
     wiz_docker_vulnerabilities_policy: "Default vulnerabilities policy,YOUR_CUSTOM_SECRETS_POLICY"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
