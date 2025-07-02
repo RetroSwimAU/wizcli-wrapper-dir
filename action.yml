@@ -33,31 +33,31 @@ inputs:
     required: false
     default: "Default vulnerabilities policy"
 
-  # # IaC scan inputs
-  # iac_scan_path:  
-  #   description: "Set the relative path in the repo to the root folder of the IaC files. Wiz scan is recursive and scans all subfolders. To increase the quality of the scan of terraform scan you can point it to the plan.tfplanjson file: terraform plan -out plan.tfplan && terraform show -json plan.tfplan > plan.tfplanjson"
-  #   required: false
-  #   default: "."
+  # IaC scan inputs
+  iac_scan_path:  
+    description: "Set the relative path in the repo to the root folder of the IaC files. Wiz scan is recursive and scans all subfolders. To increase the quality of the scan of terraform scan you can point it to the plan.tfplanjson file: terraform plan -out plan.tfplan && terraform show -json plan.tfplan > plan.tfplanjson"
+    required: false
+    default: "."
 
-  # wiz_iac_policy:  
-  #   description: "Set the desired Wiz-cli IaC policy to use. You can add more policies to use by separating them with comma ','."
-  #   required: false
-  #   default: "Default IaC policy"
+  wiz_iac_policy:  
+    description: "Set the desired Wiz-cli IaC policy to use. You can add more policies to use by separating them with comma ','."
+    required: false
+    default: "Default IaC policy"
 
-  # wiz_iac_report_name: 
-  #   description: "Create a Wiz report with the specified name. The report can be viewed in the Wiz console under Reports -> CI/CD Scans."
-  #   required: false
-  #   default: "${{ github.repository }}-${{ github.run_number }}"
+  wiz_iac_report_name: 
+    description: "Create a Wiz report with the specified name. The report can be viewed in the Wiz console under Reports -> CI/CD Scans."
+    required: false
+    default: "${{ github.repository }}-${{ github.run_number }}"
 
-  # wiz_iac_tags: 
-  #   description: "Set the desired tags to use"
-  #   required: false
-  #   default: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
+  wiz_iac_tags: 
+    description: "Set the desired tags to use"
+    required: false
+    default: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
 
-  # skip_iac_scan: 
-  #   description: "Set to 'skip' to skip the IaC scan"
-  #   required: false
-  #   default: "skip"
+  skip_iac_scan: 
+    description: "Set to 'skip' to skip the IaC scan"
+    required: false
+    default: "skip"
   
   # Docker images vulnerability scan inputs
   docker_scan_path:  
