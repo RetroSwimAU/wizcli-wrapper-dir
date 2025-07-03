@@ -119,7 +119,6 @@ jobs:
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
     wiz_iac_policy: "YOUR_CUSTOM_IAC_POLICY"
-    skip_iac_scan: "noskip"
     skip_docker_scan: "skip"
     skip_dir_scan: "skip"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
@@ -133,11 +132,11 @@ jobs:
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
     docker_scan_path: "./YOUR_RELATIVE_PATH_TO_DOCKERFILE_FOLDER"
-    wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
+    wiz_docker_vulnerabilities_policy: "YOUR_CUSTOM_VULN_POLICY"
 
-    # IaC scans are now skipped by default
     skip_dir_scan: "skip" 
-
+    skip_iac_scan: "skip"
+    
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
@@ -151,9 +150,9 @@ jobs:
     dir_scan_path: "./YOUR_RELATIVE_PATH_TO_CODE_TOP_LEVEL"
     wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
 
-    # IaC scans are now skipped by default
     skip_iac_scan: "skip"
-
+    skip_docker_scan: "skip"
+    
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
