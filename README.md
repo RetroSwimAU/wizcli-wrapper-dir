@@ -34,7 +34,7 @@ Not supported:
 # Usage
 
 ```yaml
-  uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+  uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
   with: 
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
@@ -91,7 +91,7 @@ jobs:
 
       # Run both wiz iac and docker scans, and upload the results to Wiz
       - name: Wiz Full Scan With Default Values
-        uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+        uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
         with:
 
           # Directory vulnerability scan defaults
@@ -134,7 +134,7 @@ jobs:
 
 ```yaml
 - name: Wiz IaC Scan
-  uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+  uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
   with: 
     enable_iac_scan: "true"
     wiz_iac_policy: "YOUR_CUSTOM_IAC_POLICY"
@@ -146,7 +146,7 @@ jobs:
 
 ```yaml
 - name: Wiz Docker Image Vulnerability Scan
-  uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+  uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
   with: 
     enable_docker_scan: "true"
     docker_scan_path: "./YOUR_RELATIVE_PATH_TO_DOCKERFILE_FOLDER"
@@ -159,7 +159,7 @@ jobs:
 
 ```yaml
 - name: Wiz Directory Vulnerability Scan
-  uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+  uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
   with: 
     enable_dir_scan: "true"
     dir_scan_path: "./YOUR_RELATIVE_PATH_TO_CODE_TOP_LEVEL"
@@ -173,7 +173,7 @@ jobs:
 
 ```yaml
 - name: Wiz Full Scan With Secrets Check
-  uses: RetroSwimAU/wizcli-wrapper-mod@v0.2-alpha
+  uses: RetroSwimAU/wizcli-wrapper-mod@v0.3-alpha
   with: 
     enable_dir_scan: "true"
     enable_iac_scan: "true"
