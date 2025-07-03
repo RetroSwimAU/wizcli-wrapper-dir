@@ -1,6 +1,7 @@
 name: 'wizcli-wrapper-mod'
 author: "Aikashev Aleksei & RetroSwim"
 description: "A simple wrapper for wiz-cli, with directory support"
+icon: "alert-circle"
 
 inputs:
   # Directory scan inputs
