@@ -1,6 +1,6 @@
-# Wizcli Wrapper v1 - mod
+# Wizcli Wrapper v1 - dir mod
 
-This is a repository for the **Wizcli Wrapper v1** GitHub action. 
+This is a repository for the **Wizcli Wrapper v1 - dir mod** GitHub action. 
 
 You can use this action for the following:
 - scanning Infrastructure as Code (IaC) files in your repository for vulnerabilities and compliance issues:
@@ -91,13 +91,28 @@ jobs:
       # Run both wiz iac and docker scans, and upload the results to Wiz
       - name: Wiz Full Scan With Default Values
         uses: aleksei-aikashev/wizcli-wrapper@v1
-        with: 
+        with:
+
+          # Directory vulnerability scan defaults
+          enable_dir_scan: "false"
+          dir_scan_path: "."
+          wiz_dir_policy: "Default vulnerabilities policy"
+          wiz_dir_report_name: "${{ github.repository }}-directory-${{ github.run_number }}"
+          wiz_dir_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
+
+          # Docker images vulnerability scan defaults
+          enable_docker_scan: "false"
+          docker_scan_path: "."
+          docker_image_tag: "${{ github.repository }}-${{ github.run_number }}"
+          wiz_docker_policy: "Default vulnerabilities policy"
+          wiz_docker_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
+
           # IaC scan defaults
+          enable_iac_scan: "false"
           iac_scan_path: "."
           wiz_iac_policy: "Default IaC policy"
           wiz_iac_report_name: "${{ github.repository }}-${{ github.run_number }}"
           wiz_iac_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
-          skip_iac_scan: null
           
 
           # Docker images vulnerability scan defaults
@@ -118,9 +133,8 @@ jobs:
 - name: Wiz IaC Scan
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
+    enable_iac_scan: "true"
     wiz_iac_policy: "YOUR_CUSTOM_IAC_POLICY"
-    skip_docker_scan: "skip"
-    skip_dir_scan: "skip"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
@@ -131,12 +145,9 @@ jobs:
 - name: Wiz Docker Image Vulnerability Scan
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
+    enable_docker_scan: "true"
     docker_scan_path: "./YOUR_RELATIVE_PATH_TO_DOCKERFILE_FOLDER"
-    wiz_docker_vulnerabilities_policy: "YOUR_CUSTOM_VULN_POLICY"
-
-    skip_dir_scan: "skip" 
-    skip_iac_scan: "skip"
-    
+    wiz_docker_policy: "YOUR_CUSTOM_VULN_POLICY"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
@@ -147,12 +158,9 @@ jobs:
 - name: Wiz Docker Image Vulnerability Scan
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
+    enable_dir_scan: "true"
     dir_scan_path: "./YOUR_RELATIVE_PATH_TO_CODE_TOP_LEVEL"
-    wiz_iac_policy: "YOUR_CUSTOM_VULN_POLICY"
-
-    skip_iac_scan: "skip"
-    skip_docker_scan: "skip"
-    
+    wiz_dir_policy: "YOUR_CUSTOM_VULN_POLICY"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
     wiz_client_secret: ${{ secrets.WIZ_CLIENT_SECRET }}
 ```
@@ -164,7 +172,9 @@ jobs:
 - name: Wiz Full Scan With Secrets Check
   uses: aleksei-aikashev/wizcli-wrapper@v1
   with: 
-    skip_iac_scan: "noskip"
+    enable_dir_scan: "true"
+    enable_iac_scan: "true"
+    enable_docker_scan: "true"
     wiz_iac_policy: "Default IaC policy,YOUR_CUSTOM_SECRETS_POLICY"
     wiz_docker_vulnerabilities_policy: "Default vulnerabilities policy,YOUR_CUSTOM_SECRETS_POLICY"
     wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
