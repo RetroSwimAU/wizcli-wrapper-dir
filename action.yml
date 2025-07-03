@@ -78,7 +78,7 @@ inputs:
     default: "${{ github.repository }}-${{ github.run_number }}"
 
   skip_docker_build: 
-    description: "Set to 'skip' to skip the docker build (e.g. image was built by previous action)"
+    description: "Set to 'true' to skip the docker build (e.g. image was built by previous action)"
     required: false
 
   enable_docker_scan: 
