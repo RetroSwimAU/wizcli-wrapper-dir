@@ -101,13 +101,6 @@ jobs:
           wiz_dir_report_name: "${{ github.repository }}-directory-${{ github.run_number }}"
           wiz_dir_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
 
-          # Docker images vulnerability scan defaults
-          enable_docker_scan: "false"
-          docker_scan_path: "."
-          docker_image_tag: "${{ github.repository }}-${{ github.run_number }}"
-          wiz_docker_policy: "Default vulnerabilities policy"
-          wiz_docker_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
-
           # IaC scan defaults
           enable_iac_scan: "false"
           iac_scan_path: "."
