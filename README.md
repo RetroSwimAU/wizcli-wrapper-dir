@@ -1,6 +1,6 @@
-# Wizcli Wrapper v1 - dir mod
+# Wizcli Wrapper Mod
 
-This is a repository for the **Wizcli Wrapper v1 - dir mod** GitHub action. 
+This is a repository for the **Wizcli Wrapper - directory scan mod** GitHub action. 
 
 You can use this action for the following:
 - scanning Infrastructure as Code (IaC) files in your repository for vulnerabilities and compliance issues:
@@ -16,7 +16,7 @@ You can use this action for the following:
 - scanning for secrets in your repository and Docker images
   - the wizcli will search for secrets during the IaC and the Docker scan by default
 - scan code in directories ***(new)***
-  - wizcli scans code in directories for vulnerable dependencies (I assume)
+  - wizcli scans code in directories for vulnerable dependencies, probably build your project first?
 
 Not supported:
 
@@ -43,7 +43,7 @@ Not supported:
 
 # Table of Contents
 
-- [Wizcli Wrapper v1](#wizcli-wrapper-v1)
+- [Wizcli Wrapper Mod](#wizcli-wrapper-mod)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Table of Contents](#table-of-contents)
@@ -51,6 +51,7 @@ Not supported:
 - [Scenarios](#scenarios)
   - [Scan only IaC with custom policy](#scan-only-iac-with-custom-policy)
   - [Scan only Docker images with custom policy and relative Dockerfile path](#scan-only-docker-images-with-custom-policy-and-relative-dockerfile-path)
+  - [Scan code in specified path](#scan-code-in-specified-path)
   - [Scanning for secrets and breaking the build](#scanning-for-secrets-and-breaking-the-build)
 - [Development](#development)
   - [Contributing](#contributing)
