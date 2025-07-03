@@ -116,10 +116,12 @@ jobs:
           
 
           # Docker images vulnerability scan defaults
+          enable_docker_scan: "false"
+          docker_image_tag: "${{ github.repository }}-${{ github.run_number }}"
           docker_scan_path: "."
           wiz_docker_vulnerabilities_policy: "Default vulnerabilities policy"
           wiz_docker_report_name: "${{ github.repository }}-${{ github.run_number }}"
-          skip_docker_scan: null
+          wiz_docker_tags: "repo=${{ github.repository }},commit_sha=${{ github.sha }},pr_title=${{ github.event.pull_request.title }},pr_number=${{ github.event.number}},event_name=${{ github.event_name }},github_workflow=${{ github.workflow }}"
 
           # Common inputs
           wiz_client_id: ${{ secrets.WIZ_CLIENT_ID }}
